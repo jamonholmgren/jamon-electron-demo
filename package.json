@@ -1,0 +1,134 @@
+{
+  "author": {
+    "email": "steve@kellock.ca",
+    "name": "Steve Kellock"
+  },
+  "ava": {
+    "require": [
+      "./out-test/main/test/setup.js"
+    ]
+  },
+  "build": {
+    "appId": "com.example.typescript-with-electron-react-kit",
+    "files": [
+      "!src",
+      "!docs",
+      "!tsconfig.json",
+      "!fuse.js",
+      "!dev-app-update.yml",
+      "!README.md",
+      "!LICENSE",
+      "!globals.d.ts"
+    ],
+    "linux": {
+      "target": [
+        "tar.gz"
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "productName": "Sweet Sweet App",
+    "publish": {
+      "owner": "skellock",
+      "provider": "github",
+      "repo": "typescript-with-electron-react-kit"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ]
+    }
+  },
+  "dependencies": {
+    "@types/ramda": "^0.24.7",
+    "electron-is-dev": "0.3.0",
+    "electron-log": "2.2.7",
+    "electron-store": "1.2.0",
+    "electron-updater": "2.8.7",
+    "electron-window-state-manager": "0.3.2",
+    "glamor": "2.20.40",
+    "mousetrap": "1.6.1",
+    "popmotion-react": "1.1.0",
+    "ramda": "0.24.1",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-transition-group": "2.2.0"
+  },
+  "description": "An electron starter project.",
+  "devDependencies": {
+    "@storybook/react": "3.2.4",
+    "@types/electron-store": "1.2.0",
+    "@types/mockery": "1.4.29",
+    "@types/mousetrap": "1.5.34",
+    "@types/react": "15.0.38",
+    "@types/react-dom": "15.5.2",
+    "@types/react-test-renderer": "15.5.2",
+    "@types/sinon": "2.3.3",
+    "@types/storybook__react": "3.0.3",
+    "ava": "0.21.0",
+    "babel-preset-react": "6.24.1",
+    "coveralls": "^2.13.1",
+    "electron": "1.7.5",
+    "electron-builder": "19.22.1",
+    "fuse-box": "2.2.2-beta.13",
+    "husky": "0.14.3",
+    "lint-staged": "4.0.3",
+    "mockery": "2.1.0",
+    "npm-run-all": "4.0.2",
+    "npm-scripts-info": "0.3.6",
+    "nyc": "11.1.0",
+    "prettier": "1.5.3",
+    "react-test-renderer": "15.6.1",
+    "sinon": "3.2.0",
+    "ts-loader": "2.3.2",
+    "ts-node": "3.3.0",
+    "tslint": "5.6.0",
+    "tslint-eslint-rules": "4.1.1",
+    "tslint-react": "3.2.0",
+    "tslint-react-recommended": "1.0.15",
+    "typescript": "2.4.2"
+  },
+  "license": "MIT",
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write --no-semi --print-width 100 --single-quote",
+      "tslint --fix",
+      "git add"
+    ]
+  },
+  "main": "out/main.js",
+  "name": "typescript-with-electron-react-kit",
+  "private": true,
+  "repository": "skellock/typescript-with-electron-react-kit",
+  "scripts": {
+    "build-storybook": "build-storybook",
+    "check": "npm-run-all check:*",
+    "check:src": "tsc -p tsconfig.json --noEmit --pretty",
+    "check:test": "tsc -p tsconfig.test.json --noEmit --pretty",
+    "clean": "rm -rf .fusebox out dist out-test",
+    "compile": "NODE_ENV=production ts-node fuse",
+    "coverage:upload": "cat ./coverage/lcov.info | coveralls",
+    "coverage:report": "nyc --reporter=lcov --reporter=html --reporter=text ava",
+    "coverage": "npm-run-all test:clean test:compile coverage:report",
+    "dist": "electron-builder --mac --win --linux --ia32 --x64",
+    "draft": "electron-builder -p always --draft --mac --win --linux --ia32 --x64",
+    "info": "npm-scripts-info",
+    "lint": "tslint \"fuse.ts\" \"{src,typings}/**/*.{ts,tsx}\"",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps",
+    "precommit": "lint-staged",
+    "prepush": "npm-run-all check lint",
+    "sanity": "npm-run-all clean check lint test clean compile clean",
+    "start": "ts-node fuse",
+    "storybook": "start-storybook -p 6006",
+    "test": "npm-run-all test:clean test:compile test:unit",
+    "test:clean": "rm -rf out-test",
+    "test:compile": "tsc -p tsconfig.test.json",
+    "test:unit": "ava",
+    "watch:compile": "npm run test:compile -- -w",
+    "watch:tests": "npm run test:unit -- --watch"
+  },
+  "version": "1.0.0"
+}
