@@ -56,8 +56,8 @@ const nav = {
 }
 
 const reservations = {
-  open: 'green',
-  reserved: 'red',
+  open: '#38384e',
+  reserved: '#fd9f2a',
 }
 
 /**
