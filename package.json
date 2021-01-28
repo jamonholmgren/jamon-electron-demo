@@ -70,7 +70,7 @@
     "ava": "0.21.0",
     "babel-preset-react": "6.24.1",
     "coveralls": "^2.13.1",
-    "electron": "1.7.5",
+    "electron": "9.4.0",
     "electron-builder": "19.22.1",
     "fuse-box": "2.2.2-beta.13",
     "husky": "0.14.3",
